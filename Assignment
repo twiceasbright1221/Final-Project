@@ -1,0 +1,46 @@
+/**
+ * Assignment.java
+ * Represents a single assignment in a course.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class Assignment {
+
+    // Fields
+    private String assignmentName;
+    private double pointsEarned;
+    private double pointsPossible;
+    private String category; // e.g. "Homework", "Test", "Quiz"
+
+    // Constructor
+    public Assignment(String assignmentName, double pointsEarned, double pointsPossible, String category) {
+        this.assignmentName = assignmentName;
+        this.pointsEarned = pointsEarned;
+        this.pointsPossible = pointsPossible;
+        this.category = category;
+    }
+
+    // Getters
+    public String getAssignmentName() { return assignmentName; }
+    public double getPointsEarned()   { return pointsEarned; }
+    public double getPointsPossible() { return pointsPossible; }
+    public String getCategory()       { return category; }
+
+    // Setters
+    public void setAssignmentName(String assignmentName) { this.assignmentName = assignmentName; }
+    public void setPointsEarned(double pointsEarned)     { this.pointsEarned = pointsEarned; }
+    public void setPointsPossible(double pointsPossible) { this.pointsPossible = pointsPossible; }
+    public void setCategory(String category)             { this.category = category; }
+
+    // Returns the percentage score for this assignment
+    public double getPercentage() {
+        return (pointsEarned / pointsPossible) * 100;
+    }
+
+    @Override
+    public String toString() {
+        return category + " - " + assignmentName + ": " + pointsEarned + "/" + pointsPossible
+                + " (" + String.format("%.1f", getPercentage()) + "%)";
+    }
+}

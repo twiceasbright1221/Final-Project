@@ -1,0 +1,39 @@
+/**
+ * AssignmentTest.java
+ * Tests the Assignment class to make sure everything works correctly.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class AssignmentTest {
+
+    public static void main(String[] args) {
+
+        System.out.println("--- Testing Assignment class ---");
+
+        // Create a test assignment
+        Assignment a1 = new Assignment("Midterm Exam", 88, 100, "Test");
+
+        // Test getters
+        System.out.println("Name: " + a1.getAssignmentName());       // should be Midterm Exam
+        System.out.println("Earned: " + a1.getPointsEarned());       // should be 88.0
+        System.out.println("Possible: " + a1.getPointsPossible());   // should be 100.0
+        System.out.println("Category: " + a1.getCategory());         // should be Test
+        System.out.println("Percentage: " + a1.getPercentage());     // should be 88.0
+
+        // Test toString
+        System.out.println(a1);
+
+        // Test setters
+        a1.setPointsEarned(95);
+        System.out.println("Updated score: " + a1.getPointsEarned()); // should be 95.0
+
+        // Test a homework assignment
+        Assignment a2 = new Assignment("Homework 1", 45, 50, "Homework");
+        System.out.println("Homework percentage: " + a2.getPercentage()); // should be 90.0
+        System.out.println(a2);
+
+        System.out.println("--- Assignment tests done ---");
+    }
+}
+

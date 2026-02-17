@@ -1,0 +1,44 @@
+/**
+ * CourseTest.java
+ * Tests the Course class to make sure grades calculate correctly.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class CourseTest {
+
+    public static void main(String[] args) {
+
+        System.out.println("--- Testing Course class ---");
+
+        // Create a course
+        Course c1 = new Course("Introduction to Java", "SDEV 200", 3);
+
+        // Test getters
+        System.out.println("Course name: " + c1.getCourseName());   // Introduction to Java
+        System.out.println("Course code: " + c1.getCourseCode());   // SDEV 200
+        System.out.println("Credits: " + c1.getCreditHours());      // 3
+
+        // Add some assignments
+        c1.addAssignment(new Assignment("Homework 1", 45, 50, "Homework"));
+        c1.addAssignment(new Assignment("Homework 2", 48, 50, "Homework"));
+        c1.addAssignment(new Assignment("Midterm",    80, 100, "Test"));
+
+        // Test grade calculation - should be 173/200 = 86.5%
+        double grade = c1.calculateFinalGrade();
+        System.out.println("Final grade: " + grade);  // should be 86.5
+
+        // Check the assignment list
+        System.out.println("Number of assignments: " + c1.getAssignments().size()); // 3
+
+        // Print out each assignment
+        for (Assignment a : c1.getAssignments()) {
+            System.out.println("  " + a);
+        }
+
+        // Test toString
+        System.out.println(c1);
+
+        System.out.println("--- Course tests done ---");
+    }
+}

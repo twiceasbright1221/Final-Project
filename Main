@@ -1,0 +1,18 @@
+/**
+ * Main.java
+ * Runs all test classes for the Student Grade Calculator.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        AssignmentTest.main(null);
+        System.out.println();
+        CourseTest.main(null);
+        System.out.println();
+        StudentTest.main(null);
+    }
+}
+

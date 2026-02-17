@@ -1,0 +1,54 @@
+/**
+ * StudentTest.java
+ * Tests the Student class - adding courses and calculating GPA.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class StudentTest {
+
+    public static void main(String[] args) {
+
+        System.out.println("--- Testing Student class ---");
+
+        // Create a student
+        Student s1 = new Student("S001", "Kaleb Hunter", "Software Development");
+
+        // Test getters
+        System.out.println("ID: " + s1.getStudentID());        // S001
+        System.out.println("Name: " + s1.getStudentName());    // Kaleb Hunter
+        System.out.println("Major: " + s1.getMajor());         // Software Development
+
+        // Build a course with assignments
+        Course java = new Course("Intro to Java", "SDEV 200", 3);
+        java.addAssignment(new Assignment("Homework 1", 48, 50, "Homework"));
+        java.addAssignment(new Assignment("Midterm",    88, 100, "Test"));
+        java.addAssignment(new Assignment("Final",      91, 100, "Test"));
+
+        Course math = new Course("Calculus I", "MATH 151", 4);
+        math.addAssignment(new Assignment("Quiz 1",    18, 20, "Quiz"));
+        math.addAssignment(new Assignment("Midterm",   74, 100, "Test"));
+        math.addAssignment(new Assignment("Final Exam",78, 100, "Test"));
+
+        // Add courses to student
+        s1.addCourse(java);
+        s1.addCourse(math);
+
+        // Check number of courses
+        System.out.println("Courses enrolled: " + s1.getCourses().size()); // 2
+
+        // Calculate and display GPA
+        double gpa = s1.calculateCumulativeGPA();
+        System.out.println("Cumulative GPA: " + String.format("%.2f", gpa));
+
+        // Print student summary
+        System.out.println(s1);
+
+        // Print each course
+        for (Course c : s1.getCourses()) {
+            System.out.println("  " + c);
+        }
+
+        System.out.println("--- Student tests done ---");
+    }
+}

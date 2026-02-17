@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+
+/**
+ * Student.java
+ * Represents a student with a list of courses they are enrolled in.
+ * Can calculate the student's cumulative GPA.
+ *
+ * Kaleb Hunter
+ * SDEV 200 - Prof. Newell
+ */
+public class Student {
+
+    // Fields
+    private String studentID;
+    private String studentName;
+    private String major;
+    private ArrayList<Course> courses;
+    private double cumulativeGPA;
+
+    // Constructor
+    public Student(String studentID, String studentName, String major) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.major = major;
+        this.courses = new ArrayList<>();
+        this.cumulativeGPA = 0.0;
+    }
+
+    // Getters
+    public String getStudentID()          { return studentID; }
+    public String getStudentName()        { return studentName; }
+    public String getMajor()              { return major; }
+    public ArrayList<Course> getCourses() { return courses; }
+    public double getCumulativeGPA()      { return cumulativeGPA; }
+
+    // Setters
+    public void setStudentID(String studentID)     { this.studentID = studentID; }
+    public void setStudentName(String studentName) { this.studentName = studentName; }
+    public void setMajor(String major)             { this.major = major; }
+
+    // Adds a course to the student's list
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
+    // Calculates GPA by averaging the grade across all courses
+    // weighted by credit hours
+    public double calculateCumulativeGPA() {
+        double totalPoints = 0;
+        int totalCredits = 0;
+
+        for (Course c : courses) {
+            c.calculateFinalGrade();
+
+            // Convert percentage to 4.0 scale
+            double grade = c.getFinalGrade();
+            double gpaPoints;
+            if (grade >= 90)      gpaPoints = 4.0;
+            else if (grade >= 80) gpaPoints = 3.0;
+            else if (grade >= 70) gpaPoints = 2.0;
+            else if (grade >= 60) gpaPoints = 1.0;
+            else                  gpaPoints = 0.0;
+
+            totalPoints += gpaPoints * c.getCreditHours();
+            totalCredits += c.getCreditHours();
+        }
+
+        if (totalCredits > 0) {
+            cumulativeGPA = totalPoints / totalCredits;
+        }
+
+        return cumulativeGPA;
+    }
+
+    @Override
+    public String toString() {
+        return "Student: " + studentName + " (ID: " + studentID + ")"
+                + " | Major: " + major
+                + " | GPA: " + String.format("%.2f", cumulativeGPA)
+                + " | Courses: " + courses.size();
+    }
+}
